@@ -14,7 +14,11 @@ enum RequestError: Error {
     case noData
 }
 
-struct APIClient {
+protocol APIClientProtocol {
+    func request() -> Observable<[Person]>
+}
+
+struct APIClient: APIClientProtocol {
     private let url = URL(string: "https://swapi.dev/api/people")
 
     func request() -> Observable<[Person]> {

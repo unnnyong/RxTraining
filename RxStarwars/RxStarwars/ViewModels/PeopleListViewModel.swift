@@ -14,9 +14,9 @@ final class PeopleListViewModel {
     var people = Observable<[Person]>.empty()
     let reload = PublishSubject<Void>()
 
-    init() {
+    init(apiCleint: APIClientProtocol = APIClient()) {
         people = reload.flatMap {
-            APIClient().request()
+            apiCleint.request()
         }
     }
 
